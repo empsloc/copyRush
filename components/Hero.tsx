@@ -68,13 +68,3 @@ export const Hero = (props: {}) => {
     </div>
   );
 };
-
-
-
-
-// {/* Why try print store */}
-{/* <div className="bg-[rgb(232,234,245)] max-w-screen">
-<div className="h2">helooooooooooooooooooooooooooooooooooooggggggggggggggggggggggfffffffffffffffffffffffff</div>
-<div className="mx-auto max-w-screen-xl">
-</div>
-</div> */}
