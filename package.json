@@ -23,6 +23,7 @@
     "react-dom": "^19.0.0",
     "supabase": "^2.15.8",
     "tailwind-merge": "^3.0.2",
+    "tailwind-scrollbar-hide": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {

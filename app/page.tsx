@@ -1,12 +1,12 @@
 "use client";
 import { Hero } from "@/components/Hero";
-import { ThemeToggleButton } from "@/components/themeToggleButton";
-import Image from "next/image";
+import { PrintOutPreview } from "./preview/page";
 
 export default function Home() {
   return (
     <div>
-      <Home />
+      <PrintOutPreview />
+      {/* <Hero /> */}
     </div>
   );
 }
