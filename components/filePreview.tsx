@@ -11,7 +11,7 @@ export const DocumentPreview = () => {
                     className="w-full h-full object-cover rounded-2xl p-2"
                 />
             </div>
-            <div className="absolute top-2 right-2 w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center shadow-md">
+            <div className="absolute top-2 right-2 w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center shadow-md cursor-pointer">
                 <X size={16} color="#000" />
             </div>
         </div>

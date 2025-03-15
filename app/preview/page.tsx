@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { PrintSettingTile } from '@/components/printSettingTile';
 
 export const PrintOutPreview = () => {
+    const numberOfFiles = 2;
+
     return (
         <div className="">
             <div className="bg-[rgb(232,234,245)] w-full space-y-5">
@@ -19,9 +21,9 @@ export const PrintOutPreview = () => {
 
                     {/* List of files displayed here */}
                     <div className='listOfFile flex flex-row gap-5 overflow-x-auto hitespace-nowrap custom-scrollbar justify-center scroll-auto'>
+                        
                         {/* The docs component */}
-
-                        {[...Array(3)].map((_, index) => (
+                        {[...Array(numberOfFiles)].map((_, index) => (
                             <DocumentPreview key={index} />
                         ))}
 
@@ -33,15 +35,18 @@ export const PrintOutPreview = () => {
                             <h2 className="text-sm font-light text-black">Add files</h2>
                         </div>
                     </div>
+
                     {/* Alternate button to add more files */}
                     <div className="flex justify-center">
-                        <Button className="bg-green-600 hover:bg-green-700 text-base font-medium text-white">
+                        <Button className="bg-green-600 hover:bg-green-700 text-base font-medium text-white cursor-pointer">
                             <FilePlus2 color="#ffffff" />
                             Add more files
                         </Button>
                     </div>
                 </div>
             </div>
+
+            {/* Configuration section for prints */}
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5">
                 <div className="">
                     <h1 className='text-black text-xl font-bold'>
@@ -52,7 +57,9 @@ export const PrintOutPreview = () => {
                     </h1>
                 </div>
 
-                <PrintSettingTile/>
+                {[...Array(numberOfFiles)].map((_, index) => (
+                    <PrintSettingTile key={index} />
+                ))}
             </div>
         </div>
     )
