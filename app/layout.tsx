@@ -33,13 +33,15 @@ export default function RootLayout({
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
             {" "}
             <Header />
+            <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
             {children}
+            </div>
           </ThemeProvider>
         </body>
       </html>

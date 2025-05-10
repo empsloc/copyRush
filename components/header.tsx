@@ -4,8 +4,8 @@ import { ThemeToggleButton } from "./themeToggleButton";
 
 export const Header = (props: {}) => {
   return (
-    <header className="bg-white">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <header className="bg-white mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <a className="block text-teal-600" href="#">
