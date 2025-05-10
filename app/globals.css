@@ -101,6 +101,7 @@
     --chart-5: 340 75% 55%;
   }
 }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -108,4 +109,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Safari */
+}
+
+.custom-scrollbar {
+  -ms-overflow-style: none;  /* Hide scrollbar in IE, Edge */
+  scrollbar-width: none;  /* Hide scrollbar in Firefox */
 }

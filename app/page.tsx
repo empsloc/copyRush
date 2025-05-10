@@ -1,12 +1,11 @@
 "use client";
 import { Hero } from "@/components/Hero";
-import { ThemeToggleButton } from "@/components/themeToggleButton";
-import { createClient } from "@/utils/supabase/client";
-import Image from "next/image";
+import { PrintOutPreview } from "./preview/page";
 
 export default function Home() {
   return (
     <div>
+      {/* <PrintOutPreview /> */}
       <Hero />
     </div>
   );
