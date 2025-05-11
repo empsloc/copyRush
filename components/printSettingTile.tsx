@@ -15,6 +15,8 @@ import {
 
 
 export const PrintSettingTile = () => {
+
+
   const blackWhiteSvg =
     "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/ui/print/bnw_print.png";
   const colorPrintSvg =
@@ -25,6 +27,8 @@ export const PrintSettingTile = () => {
     "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/ui/print/landscape_print.png";
   var isExpanded = false;
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [numberOfCopies, setNumberOfCopies] = useState(1);
+  const [colorOfPrint,setColorOfPrint] = useState('none');
 
   return (
     <div className="fileSettingTile flex flex-col gap-5 w-full rounded-2xl  p-5">
@@ -55,13 +59,17 @@ export const PrintSettingTile = () => {
           </div>
           <div className="flex  justify-evenly gap-2">
             <div className="flex flex-col items-center">
-              <div className="border border-green-700 rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={()=> setColorOfPrint('b&w')} className={`border border-green-700 ${
+          colorOfPrint === 'b&w' ? 'bg-green-100' : 'bg-transparent' // Conditional class
+        } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image src={blackWhiteSvg} alt="b&w" width={30} height={30} />
               </div>
               <h1 className="text-green-600 text-sm font-light">B&W</h1>
             </div>
             <div className="flex flex-col items-center">
-              <div className="border border-green-700 rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={()=> setColorOfPrint('color')}  className={`border border-green-700 ${
+          colorOfPrint === 'color' ? 'bg-green-100' : 'bg-transparent' // Conditional class
+        } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image src={colorPrintSvg} alt="color" width={30} height={30} />
               </div>
               <h1 className="text-green-600 text-sm font-light">Colour</h1>
@@ -149,11 +157,15 @@ export const PrintSettingTile = () => {
             </h1>
           </div>
           <div className="flex flex-row border border-green-700 rounded-xl w-[120px] h-[50px] items-center justify-between px-2">
-            <div className="cursor-pointer">
+            <div onClick={() => {
+              if (numberOfCopies > 1) {
+                setNumberOfCopies(numberOfCopies - 1);
+              }
+            }} className="cursor-pointer">
               <Minus size={20} color="#07630b" />
             </div>
-            <p className="text-lg text-black font-bold">1</p>
-            <div className="cursor-pointer">
+            <p className="text-lg text-black font-bold">{numberOfCopies}</p>
+            <div onClick={() => setNumberOfCopies(numberOfCopies + 1)} className="cursor-pointer">
               <Plus size={20} color="#076d0c" />
             </div>
           </div>
@@ -185,17 +197,17 @@ export const PrintSettingTile = () => {
 
       <div className="flex justify-between">
         <div className="flex gap-5">
-            <div><Image src="/globe.svg" alt="" width={50} height={50}/></div>
-            <div className="flex flex-col">
-                <div className="font-semibold text-gray-600">Total files : </div>
-                <div className="font-bold">₹ 3</div>
-            </div>
+          <div><Image src="/globe.svg" alt="" width={50} height={50} /></div>
+          <div className="flex flex-col">
+            <div className="font-semibold text-gray-600">Total files : </div>
+            <div className="font-bold">₹ 3</div>
+          </div>
         </div>
         <div>
           <Button className="bg-green-600 p-2 rounded-lg hover:bg-green-700 text-white cursor-pointer">
-            <CheckOutDialog/>
+            <CheckOutDialog />
           </Button>
-          
+
 
         </div>
       </div>
