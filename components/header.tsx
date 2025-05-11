@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import React from "react";
 import { ThemeToggleButton } from "./themeToggleButton";
+import { Button } from "./ui/button";
 
 export const Header = (props: {}) => {
   return (
@@ -92,13 +93,17 @@ export const Header = (props: {}) => {
 
           <div className="flex items-center gap-4">
           <SignedOut>
-              <SignInButton />
+            <Button className="bg-green-500 hover:bg-green-700 p-2 rounded-2xl text-white cursor-pointer">
+              <SignInButton  />
+              </Button>
+              <Button className="hover:bg-gray-200 p-2 rounded-2xl  cursor-pointer">
               <SignUpButton />
+              </Button>
             </SignedOut>
             <SignedIn>
               <UserButton />
             </SignedIn>
-            <div className="sm:flex sm:gap-4">
+            {/* <div className="sm:flex sm:gap-4">
             
               <a
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
@@ -115,7 +120,7 @@ export const Header = (props: {}) => {
                   Register
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div className="block md:hidden">
               <button className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">

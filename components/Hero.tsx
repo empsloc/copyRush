@@ -1,6 +1,14 @@
-import React from 'react'
+"use client"
+import { createClient } from '@/lib/supabase/server';
+import React, { useEffect } from 'react'
+import { Button } from './ui/button';
 
-function Hero() {
+export default  function ({shopList}:any) {
+
+  const sampleFunction=()=>{
+    console.log(shopList)
+  }
+
   return (
     <div><section className="">
     <div
@@ -16,6 +24,8 @@ function Hero() {
         <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi. Natus, provident
           accusamus impedit minima harum corporis iusto.
+
+        
         </p>
   
         <div className="mt-4 flex gap-4 sm:mt-6">
@@ -32,6 +42,7 @@ function Hero() {
           >
             Learn More
           </a>
+       
         </div>
       </div>
   
@@ -70,4 +81,3 @@ function Hero() {
   )
 }
 
-export default Hero

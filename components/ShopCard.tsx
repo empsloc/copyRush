@@ -2,7 +2,7 @@ import { Star, StarHalf, StarIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-function ShopCard() {
+function ShopCard({shopName, rating}:any) {
   return (
     <div className="hover:shadow-xl p-3 rounded-2xl cursor-pointer">
       <div className="flex flex-col gap-2">
@@ -17,10 +17,10 @@ function ShopCard() {
         </div>
         <div className="flex flex-col">
           <div className="flex justify-between">
-            <div className="font-bold">Shop Name </div>
+            <div className="font-bold">{shopName} </div>
 
             <div className="flex justify-center items-center gap-2 bg-green-600 rounded-lg px-2 py-1 ">
-                <div className="text-sm font-bold text-white">4 </div>
+                <div className="text-sm font-bold text-white">{rating} </div>
                 <div><StarIcon fill="white" color="white" size={10}/></div>
             </div>
           </div>
