@@ -1,12 +1,14 @@
-import { UploadFilesWidget } from '@/components/UploadFilesWidget'
-import React from 'react'
+import UploadFilesWidget from "@/components/UploadFilesWidget"
+import { createClient } from "@/lib/supabase/server";
+import { useRouter } from 'next/router';
+import React, { createContext } from 'react'
 
-function UploadFiles() {
+export default async function  UploadFiles() {
+
   return (
     <div>
+            
         <UploadFilesWidget/>
     </div>
   )
 }
-
-export default UploadFiles

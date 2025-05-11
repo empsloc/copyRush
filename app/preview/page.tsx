@@ -25,7 +25,7 @@ function Preview() {
                     <div className='listOfFile flex flex-row gap-5 overflow-x-auto hitespace-nowrap custom-scrollbar justify-center scroll-auto'>
                         
                        
-                            <DocumentPreview />
+                            <DocumentPreview  />
                        
 
                         {/* Add more file card */}

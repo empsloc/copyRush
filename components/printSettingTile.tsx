@@ -1,7 +1,7 @@
 "use client";
 import { FileCog, Minus, Plus } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import CheckOutDialog from "./checkOutDialog";
 import {
@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { FilesContext } from "@/context/FilesContext";
 
 
 export const PrintSettingTile = () => {
@@ -31,6 +32,11 @@ export const PrintSettingTile = () => {
   const [colorOfPrint, setColorOfPrint] = useState('none');
   const [orientationOfPrint, setOrientationOfPrint] = useState('none');
   const [sidesOfPrint, setSidesOfPrint] = useState('none');
+   const { files, setFiles } = useContext(FilesContext);
+
+   useEffect(()=>{
+console.log(files)
+   },files)
 
   return (
     <div className="fileSettingTile flex flex-col gap-5 w-full rounded-2xl  p-5">
