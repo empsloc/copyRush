@@ -1,4 +1,4 @@
-import { SignInButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import React from "react";
 import { ThemeToggleButton } from "./themeToggleButton";
 
@@ -91,6 +91,13 @@ export const Header = (props: {}) => {
           </div>
 
           <div className="flex items-center gap-4">
+          <SignedOut>
+              <SignInButton />
+              <SignUpButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             <div className="sm:flex sm:gap-4">
             
               <a
