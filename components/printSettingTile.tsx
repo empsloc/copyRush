@@ -28,7 +28,9 @@ export const PrintSettingTile = () => {
   var isExpanded = false;
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [numberOfCopies, setNumberOfCopies] = useState(1);
-  const [colorOfPrint,setColorOfPrint] = useState('none');
+  const [colorOfPrint, setColorOfPrint] = useState('none');
+  const [orientationOfPrint, setOrientationOfPrint] = useState('none');
+  const [sidesOfPrint, setSidesOfPrint] = useState('none');
 
   return (
     <div className="fileSettingTile flex flex-col gap-5 w-full rounded-2xl  p-5">
@@ -59,17 +61,15 @@ export const PrintSettingTile = () => {
           </div>
           <div className="flex  justify-evenly gap-2">
             <div className="flex flex-col items-center">
-              <div onClick={()=> setColorOfPrint('b&w')} className={`border border-green-700 ${
-          colorOfPrint === 'b&w' ? 'bg-green-100' : 'bg-transparent' // Conditional class
-        } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
+              <div onClick={() => setColorOfPrint('b&w')} className={`border border-green-700 ${colorOfPrint === 'b&w' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image src={blackWhiteSvg} alt="b&w" width={30} height={30} />
               </div>
               <h1 className="text-green-600 text-sm font-light">B&W</h1>
             </div>
             <div className="flex flex-col items-center">
-              <div onClick={()=> setColorOfPrint('color')}  className={`border border-green-700 ${
-          colorOfPrint === 'color' ? 'bg-green-100' : 'bg-transparent' // Conditional class
-        } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
+              <div onClick={() => setColorOfPrint('color')} className={`border border-green-700 ${colorOfPrint === 'color' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image src={colorPrintSvg} alt="color" width={30} height={30} />
               </div>
               <h1 className="text-green-600 text-sm font-light">Colour</h1>
@@ -87,7 +87,8 @@ export const PrintSettingTile = () => {
           </div>
           <div className="flex justify-evenly  gap-2">
             <div className="flex flex-col items-center">
-              <div className="border border-green-700  rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={() => setOrientationOfPrint('portrait')} className={`border border-green-700 ${orientationOfPrint === 'portrait' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image
                   className=""
                   src={portaitSvg}
@@ -99,7 +100,8 @@ export const PrintSettingTile = () => {
               <h1 className="text-green-600 text-sm font-light">Portait</h1>
             </div>
             <div className="flex flex-col items-center">
-              <div className="border border-green-700 rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={() => setOrientationOfPrint('landscape')} className={`border border-green-700 ${orientationOfPrint === 'landscape' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image
                   src={landScapeSvg}
                   alt="landscape"
@@ -124,7 +126,8 @@ export const PrintSettingTile = () => {
           </div>
           <div className="flex   gap-2">
             <div className="flex flex-col items-center">
-              <div className="border border-green-700 rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={() => setSidesOfPrint('single')} className={`border border-green-700 ${sidesOfPrint === 'single' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image
                   src={"singleSide.svg"}
                   alt="portrait"
@@ -135,7 +138,8 @@ export const PrintSettingTile = () => {
               <h1 className="text-green-600 text-sm font-light">Single side</h1>
             </div>
             <div className="flex flex-col items-center">
-              <div className="border border-green-700 rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer">
+              <div onClick={() => setSidesOfPrint('double')} className={`border border-green-700 ${sidesOfPrint === 'double' ? 'bg-green-100' : 'bg-transparent'
+                } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}>
                 <Image
                   src={"bothSide.svg"}
                   alt="landscape"
@@ -149,7 +153,7 @@ export const PrintSettingTile = () => {
         </div>
 
         {/* Choosing number of copies */}
-        <div className="flex md:flex-col gap-3 items-center justify-between">
+        <div className="flex md:flex-col gap-4 items-center">
           <div>
             <h1 className="text-black text-md font-bold">Number of copies</h1>
             <h1 className="text-black text-xs font-extralight">
@@ -164,7 +168,7 @@ export const PrintSettingTile = () => {
             }} className="cursor-pointer">
               <Minus size={20} color="#07630b" />
             </div>
-            <p className="text-lg text-black font-bold">{numberOfCopies}</p>
+            <div className="text-lg text-black font-bold select-none ">{numberOfCopies}</div>
             <div onClick={() => setNumberOfCopies(numberOfCopies + 1)} className="cursor-pointer">
               <Plus size={20} color="#076d0c" />
             </div>

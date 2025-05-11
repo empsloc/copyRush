@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-import { CircleX, CloudCog, ReceiptText } from "lucide-react";
+import { CircleX, CloudCog, ReceiptText, ShoppingCart } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,7 +18,9 @@ function CheckOutDialog() {
   const timeForDelivery = 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/assets/eta-icons/15-mins-filled.png';
   return (
     <AlertDialog>
-      <AlertDialogTrigger className='cursor-pointer border-none'>View Cart</AlertDialogTrigger>
+      <AlertDialogTrigger className='cursor-pointer border-none flex items-center gap-2'>
+        <ShoppingCart />
+        View Cart</AlertDialogTrigger>
       <AlertDialogContent className='bg-[rgb(232,234,245)]'>
         {/* header */}
         <AlertDialogHeader className='bg-white p-2 rounded-md shadow-md'>
