@@ -29,7 +29,7 @@ function Preview() {
                        
 
                         {/* Add more file card */}
-                        <div className='w-45 h-60 flex flex-col bg-white rounded-2xl justify-center items-center flex-none'>
+                        <div className='w-45 h-60 flex flex-col bg-white hover:bg-green-100 hover:border-2 rounded-2xl justify-center items-center flex-none cursor-pointer'>
                             <div className="w-10 h-10  rounded-full justify-center items-center flex border-black border">
                                 <Plus color="#000000" />
                             </div>
