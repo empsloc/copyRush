@@ -38,12 +38,6 @@ export const PrintSettingTile = () => {
       {/* File name and configuration settings of print */}
       <div className="fileName flex flex-row justify-between items-center">
         <h2 className="text-black text-md font-bold">FileName</h2>
-        {/* <div className="flex flex-row items-center p-1 rounded-md border gap-1 border-green-600 cursor-pointer">
-                    <FileCog size={16} color="#23ce0c" />
-                    <h2 className="text-green-600 text-sm font-small">
-                        Configure Settings
-                    </h2>
-                </div> */}
       </div>
 
       {/* Horizantal divider */}
@@ -153,7 +147,7 @@ export const PrintSettingTile = () => {
         </div>
 
         {/* Choosing number of copies */}
-        <div className="flex md:flex-col gap-4 items-center">
+        <div className="flex md:flex-col gap-4 items-center justify-between">
           <div>
             <h1 className="text-black text-md font-bold">Number of copies</h1>
             <h1 className="text-black text-xs font-extralight">
