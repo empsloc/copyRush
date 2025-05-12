@@ -84,9 +84,9 @@ export default function UploadFilesWidget(props: {}) {
                   <input className="flex justify-center items-center w-full" type="file" multiple onChange={handleFileChange} />
                   </Button>
                   </div>
-                  <Link  href={{ pathname: '/preview', query: { shopID: shopID} }} className="bg-green-600 hover:bg-green-700 text-base text-white w-full">
+                  <Link  href={{ pathname: '/preview', query: { shopID: shopID} }} className="bg-green-600 rounded-md hover:bg-green-700 text-base text-white w-full">
                     
-                    <div className="flex justify-center items-center">Upload your files</div>
+                    <div className="flex justify-center items-center ">Upload your files</div>
                   </Link>
                   <h6 className="text-gray-700 text-xs text-center">
                     Maximum upload size: 50MB Maximum files: 15

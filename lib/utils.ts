@@ -10,22 +10,30 @@ import { supabase } from '@/lib/supabaseClient';
 
 
 
-export async function uploadFiles(files: File[]) {
-  const uploadedFiles = [];
+export async function uploadFile(file: File) {
+  if (!file) return;
 
-  for (const file of files) {
-    const { data, error } = await supabase.storage
-      .from('files') // your bucket name
-      .upload(`uploads/${Date.now()}_${file.name}`, file);
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}.${fileExt}`; // unique file name
+  const filePath = `uploads/${fileName}`; // folder path
 
-    if (error) {
-      console.error(`Error uploading ${file.name}:`, error.message);
-      continue;
-    }
+  const { data, error } = await supabase.storage
+    .from('files') // replace with your bucket name
+    .upload(filePath, file, {
+      cacheControl: '3600',
+      upsert: false,
+    });
 
-    uploadedFiles.push(data);
+  if (error) {
+    console.error('Error uploading file:', error.message);
+    return null;
   }
 
-  return uploadedFiles;
+  // Get public URL
+  const { data: urlData } = supabase.storage
+    .from('files')
+    .getPublicUrl(filePath);
+
+  return urlData?.publicUrl; // return the file's public URL
 }
 
