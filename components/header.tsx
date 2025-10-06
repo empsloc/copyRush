@@ -93,12 +93,12 @@ export const Header = (props: {}) => {
 
           <div className="flex items-center gap-4">
           <SignedOut>
-            <Button className="bg-green-500 hover:bg-green-700 p-2 rounded-2xl text-white cursor-pointer">
+            <div className="bg-green-500 hover:bg-green-700 p-2 rounded-2xl text-white cursor-pointer">
               <SignInButton  />
-              </Button>
-              <Button className="hover:bg-gray-200 p-2 rounded-2xl  cursor-pointer">
+              </div>
+              <div className="hover:bg-gray-200 p-2 rounded-2xl  cursor-pointer">
               <SignUpButton />
-              </Button>
+              </div>
             </SignedOut>
             <SignedIn>
               <UserButton />

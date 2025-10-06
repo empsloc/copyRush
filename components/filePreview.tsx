@@ -1,5 +1,6 @@
 "use client"
 import { FilesContext } from '@/context/FilesContext';
+import { FilesPropertiesContext } from '@/context/FilesPropertiesContext';
 import { X } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 
@@ -8,6 +9,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 export const DocumentPreview = ( ) => {
     const {files, setFiles} = useContext(FilesContext)
+    const {filesProperties, setFilesProperties} = useContext(FilesPropertiesContext)
     const [fileURLs, setFileURLs] = useState<string[]>([]);
     const [isImages, setIsImages] = useState<boolean[]>([]);
 
@@ -27,7 +29,10 @@ const removeFile = (index: number) => {
   setFiles(newFiles);
 };
 
-
+const printFiles=()=>{
+  console.log(files)
+  // console.log(files)
+}
   return (
     <div className="flex gap-4 flex-wrap">
     {files.map((file:any, index:any) => (
@@ -53,6 +58,7 @@ const removeFile = (index: number) => {
         </div>
       </div>
     ))}
+    {/* <div className='' onClick={()=>printFiles()}>sell files</div> */}
   </div>
   );
 };

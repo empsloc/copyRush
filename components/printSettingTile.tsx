@@ -37,7 +37,11 @@ export const PrintSettingTile = () => {
   const searchParams = useSearchParams();
   const shopID = searchParams.get("shopID");
   const { user, isLoaded } = useUser();
-
+  const updateFileSetting = (index: number, key: string, value: any) => {
+    const updatedFiles = [...files];
+    updatedFiles[index][key] = value;
+    setFiles(updatedFiles);
+  };
   useEffect(() => {
     console.log(shopID);
     setUserEmail(user?.primaryEmailAddress?.emailAddress);
@@ -47,7 +51,7 @@ export const PrintSettingTile = () => {
   return (
     <div className="fileSettingTile flex flex-col gap-5 w-full rounded-2xl  p-5">
       {files.map((file: any, index: any) => (
-        <div className="flex flex-col gap-5 w-full rounded-2xl  py-5">
+        <div key={index} className="flex flex-col gap-5 w-full rounded-2xl  py-5">
           {/* File name and configuration settings of print */}
           <div className="fileName flex flex-row justify-between items-center">
             <h2 className="text-black text-md font-bold">{file.name}</h2>
@@ -77,9 +81,9 @@ export const PrintSettingTile = () => {
               <div className="flex  justify-evenly gap-2">
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setColorOfPrint("b&w")}
+                    onClick={() => updateFileSetting(index, "colorOfPrint", "b&w")}
                     className={`border border-green-700 ${
-                      colorOfPrint === "b&w" ? "bg-green-100" : "bg-transparent"
+                      file.colorOfPrint === "b&w" ? "bg-green-100" : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
                   >
                     <Image
@@ -93,9 +97,9 @@ export const PrintSettingTile = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setColorOfPrint("color")}
+                    onClick={() => updateFileSetting(index, "colorOfPrint", "color")}
                     className={`border border-green-700 ${
-                      colorOfPrint === "color"
+                      file.colorOfPrint === "color"
                         ? "bg-green-100"
                         : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
@@ -125,9 +129,9 @@ export const PrintSettingTile = () => {
               <div className="flex justify-evenly  gap-2">
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setOrientationOfPrint("portrait")}
+                    onClick={() => updateFileSetting(index, "orientationOfPrint", "portrait")}
                     className={`border border-green-700 ${
-                      orientationOfPrint === "portrait"
+                      file.orientationOfPrint === "portrait"
                         ? "bg-green-100"
                         : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
@@ -144,9 +148,9 @@ export const PrintSettingTile = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setOrientationOfPrint("landscape")}
+                    onClick={() => updateFileSetting(index, "orientationOfPrint", "landscape")}
                     className={`border border-green-700 ${
-                      orientationOfPrint === "landscape"
+                      file.orientationOfPrint === "landscape"
                         ? "bg-green-100"
                         : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
@@ -178,9 +182,9 @@ export const PrintSettingTile = () => {
               <div className="flex   gap-2">
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setSidesOfPrint("single")}
+                   onClick={() => updateFileSetting(index, "sidesOfPrint", "single")}
                     className={`border border-green-700 ${
-                      sidesOfPrint === "single"
+                      file.sidesOfPrint === "single"
                         ? "bg-green-100"
                         : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
@@ -198,9 +202,10 @@ export const PrintSettingTile = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <div
-                    onClick={() => setSidesOfPrint("double")}
+                                       onClick={() => updateFileSetting(index, "sidesOfPrint", "double")}
+
                     className={`border border-green-700 ${
-                      sidesOfPrint === "double"
+                      file.sidesOfPrint === "double"
                         ? "bg-green-100"
                         : "bg-transparent"
                     } rounded-xl w-[50px] h-[50px] flex items-center justify-center cursor-pointer`}
@@ -220,7 +225,7 @@ export const PrintSettingTile = () => {
             </div>
 
             {/* Choosing number of copies */}
-            <div className="flex md:flex-col gap-4 items-center">
+            <div className="flex md:flex-col gap-3 items-center justify-">
               <div>
                 <h1 className="text-black text-md font-bold">
                   Number of copies
@@ -229,27 +234,25 @@ export const PrintSettingTile = () => {
                   Choose print settings for files
                 </h1>
               </div>
-              <div className="flex flex-row border border-green-700 rounded-xl w-[120px] h-[50px] items-center justify-between px-2">
+              <div className="flex mt-2 flex-row border border-green-700 rounded-xl w-[120px] h-[50px] items-center justify-between px-2">
                 <div
-                  onClick={() => {
-                    if (numberOfCopies > 1) {
-                      setNumberOfCopies(numberOfCopies - 1);
-                    }
-                  }}
+                  onClick={() => updateFileSetting(index, "numberOfCopies", (file.numberOfCopies || 1) - 1)}
                   className="cursor-pointer"
                 >
                   <Minus size={20} color="#07630b" />
                 </div>
                 <div className="text-lg text-black font-bold select-none ">
-                  {numberOfCopies}
+                  {file.numberOfCopies}
                 </div>
                 <div
-                  onClick={() => setNumberOfCopies(numberOfCopies + 1)}
+                  onClick={() => updateFileSetting(index, "numberOfCopies", (file.numberOfCopies || 1) + 1)}
                   className="cursor-pointer"
                 >
                   <Plus size={20} color="#076d0c" />
                 </div>
               </div>
+              {/* <h1 className="text-green-600 text-sm font-light">Copies</h1> */}
+
             </div>
           </div>
 

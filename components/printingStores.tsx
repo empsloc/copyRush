@@ -7,7 +7,7 @@ function PrintingStores({ shopList }: any) {
     <div className="flex flex-col gap-7">
       <div className="font-bold text-2xl">Explore shops near you</div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {shopList.map((item: any, index: any) => (
+        {shopList&&shopList.map((item: any, index: any) => (
           <Link href={{ pathname: '/upload', query: { shopID: item.shop_id } }}  key={index}>
             <ShopCard
               shopName={item.shop_name}

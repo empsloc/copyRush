@@ -15,11 +15,13 @@ import {
 import { FilesContext } from '@/context/FilesContext';
 import { uploadFile } from '@/lib/utils';
 import { supabase } from '@/lib/supabaseClient';
+import { FilesPropertiesContext } from '@/context/FilesPropertiesContext';
 
 
 function CheckOutDialog({shop_id, number_of_copies, color_of_print, orientation_of_print, sides_of_print, price, user_email}:any) {
   const [uploading, setUploading] = useState(false);
-  const [filesURL, setFilesURL] = useState<string[]>([]);
+  const [filesURL, setFilesURL] = useState<{ url: string; fileName: string }[]>([]);
+
   async function insertData() {
     const { data, error } = await supabase
       .from('userSession')   // 👈 your table name here
@@ -27,12 +29,7 @@ function CheckOutDialog({shop_id, number_of_copies, color_of_print, orientation_
         {
           shop_id: shop_id,
           files: filesURL,
-          properties: {
-            number_of_copies:number_of_copies,
-            color_of_print:color_of_print,
-            orientation_of_print:orientation_of_print,
-            sides_of_print:sides_of_print,
-          },
+          properties: filesProperties,
           price:price,
           user_email:user_email
         },
@@ -52,28 +49,53 @@ function CheckOutDialog({shop_id, number_of_copies, color_of_print, orientation_
   }
 
   const { files, setFiles} = useContext(FilesContext)
+  const {filesProperties, setFilesProperties} = useContext(FilesPropertiesContext)
   async function handleUploadAll() {
     if (!files.length) {
       console.log("No files to upload.");
       return;
     }
-
+  
     setUploading(true);
-
-    const uploadPromises = files.map(async (file:any) => {
-      const url = await uploadFile(file);
-      return url;
+  
+    const uploadPromises = files.map(async (fileObj:any) => {
+      const url = await uploadFile(fileObj); // Directly pass the File
+      return {
+        url,
+        fileName: fileObj.name, // Directly access fileObj.name
+      };
     });
-
-    const uploadedUrls = await Promise.all(uploadPromises);
-
-    // ✅ Save URLs into filesURL state
-    setFilesURL(uploadedUrls.filter((url): url is string => Boolean(url)));
-
-    console.log("All uploaded URLs:", uploadedUrls);
-
+  
+    const uploadedData = await Promise.all(uploadPromises);
+  
+    const validData = uploadedData.filter((item) => Boolean(item.url));
+  
+    // Save URLs and fileNames
+    setFilesURL(validData); // (you might rename filesURL -> filesData for clarity)
+  
+    console.log("All uploaded URLs and filenames:", filesURL);
+  
+    // Create the filesProperties array
+    const newFilesProperties = validData.map((item, index) => ({
+      fileURL: item.url,
+      fileName: item.fileName,
+      properties: {
+        number_of_copies: files[index]?.numberOfCopies, // You probably don't have numberOfCopies on the native File (discuss below)
+        color_of_print: files[index]?.colorOfPrint,
+        orientation_of_print: files[index]?.orientationOfPrint,
+        sides_of_print: files[index]?.sidesOfPrint,
+      }
+    }));
+  
+    setFilesProperties(newFilesProperties);
+  
+    console.log("Files properties mapped:", newFilesProperties);
+  
     setUploading(false);
   }
+  
+  
+  
 
   const handleProceedButton=async()=>{
     await handleUploadAll()
